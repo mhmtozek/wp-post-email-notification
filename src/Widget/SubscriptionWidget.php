@@ -23,10 +23,21 @@ class SubscriptionWidget extends \WP_Widget
             'classname'   => 'wp_post_email_notification',
             'description' => 'Allow people to subscribe to new post notifications.',
         );
+        
+		add_action( 'wp_head', array( $this, 'wp_post_email_notification_css' ) );
 
         parent::__construct('SubscriptionWidget', 'Subscription Widget', $widget_ops);
     }
 
+	function wp_post_email_notification_css() { ?>
+	<style type="text/css">
+	.wp_post_email_notification form {display:flex}
+	.wp_post_email_notification form input {flex:1;padding:5px;border:1px solid #ddd}
+	.wp_post_email_notification form input[type="email"] {flex:2;margin-right:7px}
+	</style>
+	<?php
+	}    
+    
     /**
      * Outputs the content of the widget
      *
